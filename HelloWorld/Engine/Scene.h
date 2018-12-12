@@ -3,7 +3,6 @@
 #include "GameObject.h"
 #include <vector>
 #include "Time.h"
-
 using namespace std;
 
 
@@ -23,9 +22,14 @@ public:
 
 
 	template <typename T>
-	T* InstantiateGameObject() {
+	T* InstantiateGameObject(const b2Vec2 &p, float32 angle) {
 		static_assert(std::is_base_of<GameObject, T>::value, "T must derive from GameObject");
+		
 		T* newObj = new T();
+		Transform* trans = newObj->GetTransform();
+		trans->SetAngle(angle);
+		trans->SetPosition(p);
+
 		newObj->scene = this;
 
 		newObj->prev = gameObjectLast;
@@ -43,7 +47,10 @@ public:
 		newObj->OnInstantiated();
 		return newObj;
 	};
-
+	template <typename T>
+	T* InstantiateGameObject() {
+		return InstantiateGameObject<T>(b2Vec2_zero, 0);
+	}
 
 	//mark the gameobject to be destroyed at the next fixed update.
 	//void Destroy(GameObject* gameObject);

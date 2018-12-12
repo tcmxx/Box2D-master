@@ -5,10 +5,11 @@
 
 void Rigidbody2D::OnAddedToGameObject() {
 	Scene* scene = gameObject->GetScene();
+	Transform* currentTrans = gameObject->GetTransform();
 	auto world = scene->GetWorld2D();
 
 	body = world->CreateBody(&bodyDef);
-	
+	body->SetTransform(currentTrans->GetPosition(), currentTrans->GetAngle());
 	//add the existing collider shapes to the rigid body
 	auto colliders = gameObject->GetComponents<Collider2D>();
 
@@ -147,6 +148,10 @@ void Rigidbody2D::OnSetActive(bool active) {
 void Rigidbody2D::Start() {
 };
 void Rigidbody2D::FixedUpdate(float fixedDeltaTime) {
+	auto bodyTrans = GetTransform();
+	auto trans = gameObject->GetTransform();
+	trans->SetRotation(bodyTrans.q);
+	trans->SetPosition(bodyTrans.p);
 };
 void Rigidbody2D::OnDestroyed() {
 };

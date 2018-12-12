@@ -9,7 +9,7 @@ public:
 	void SetCircle(float radius, b2Vec2 center);
 
 	const b2Shape& GetShape()  const override;
-
+	//void OnRender() override;
 private:
 	b2CircleShape shapeInitialShape;
 };

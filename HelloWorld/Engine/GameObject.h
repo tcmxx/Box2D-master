@@ -56,6 +56,18 @@ public:
 	void SetActive(bool active);
 	inline Scene* GetScene();
 
+	//virtual functions to call for inherited classes
+	virtual void OnInstantiated() {};
+	virtual void Start() {};
+	virtual void FixedUpdate(float32 deltaTime) {};
+	virtual void OnRender() {};
+	virtual void OnDestroyed() {};
+
+	//need to be implemented
+	virtual void OnCollisionEnter() {};
+	virtual void OnCollisionExit() {};
+	virtual void OnTriggerEnter() {};
+	virtual void OnTriggerExit() {};
 
 	string name;
 
@@ -64,17 +76,6 @@ protected:
 
 	GameObject();
 
-	//virtual functions to call for inherited classes
-	virtual void OnInstantiated() {};
-	virtual void Start() {};
-	virtual void FixedUpdate(float32 deltaTime) {};
-	virtual void OnRender() {};
-	virtual void OnDestroyed() {};
-
-	virtual void OnCollisionEnter() {};
-	virtual void OnCollisionExit() {};
-	virtual void OnTriggerEnter() {};
-	virtual void OnTriggerExit() {};
 
 private:
 	friend class Scene;

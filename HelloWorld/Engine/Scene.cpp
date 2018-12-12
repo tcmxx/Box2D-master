@@ -18,6 +18,8 @@ Scene::~Scene()
 
 
 void Scene::DestroyGameObjectImmediately(GameObject* gameObject) {
+
+	gameObject->OnDestroyed();
 	if (gameObject->next == nullptr && gameObject->prev == nullptr) {
 		gameObjectLast = nullptr;
 		gameObjectFirst = nullptr;
@@ -39,15 +41,23 @@ void Scene::DestroyGameObjectImmediately(GameObject* gameObject) {
 
 
 void Scene::FixedUpdate() {
-	GameObject* currentObj = gameObjectFirst;
+	
 	float32 interval = gameTime.GetTickInterval();
 
 	//step the physics2D world
 	world2D.Step(interval, physics2DSetting.velocityIterations, physics2DSetting.positionIterations);
 
 	//step the game objects
+	GameObject* currentObj = gameObjectFirst;
 	while (currentObj != nullptr) {
 		currentObj->InnerFixedUpdate(interval);
+		currentObj = currentObj->next;
+	}
+
+	//render all game objects
+	currentObj = gameObjectFirst;
+	while (currentObj != nullptr) {
+		currentObj->Render();
 		currentObj = currentObj->next;
 	}
 }

@@ -20,7 +20,7 @@ public:
 	int tickDuration;
 
 private:
-	float mTickRate;
+	int mTickRate;
 	float tickInterval;
 };
 

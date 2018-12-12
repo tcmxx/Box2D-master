@@ -8,7 +8,7 @@ public:
 	void SetBox(const b2Vec2 &size, const b2Vec2 &center, float32 angle);
 
 	const b2Shape& GetShape()  const override;
-
+	//void OnRender() override;
 private:
 	b2PolygonShape shapeInitialShape;
 };
