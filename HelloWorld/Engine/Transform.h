@@ -3,6 +3,8 @@
 #include "Box2D\Box2D.h"
 #include <vector>
 
+///Transfrom implementation.
+///It does not have scaling related right now.
 class Transform
 {
 public:
@@ -13,9 +15,18 @@ public:
 	void SetRotation(const b2Rot& rotation);
 	void SetAngle(const float32 angle);
 
+	b2Vec2 TransformPoint(const b2Vec2& position) const;
+	b2Vec2 InverseTransformPoint(const b2Vec2& position) const;
+
+	b2Vec2 TransformVector(const b2Vec2& vector) const;
+	b2Vec2 InverseTransformVector(const b2Vec2& vector) const;
+
+	b2Transform GetBaseTransform() const;
+
 	const b2Vec2& GetPosition() const;
 	const b2Rot& GetRotation() const;
 	const float32 GetAngle() const;
+
 private:
 	b2Transform baseTransform;
 
@@ -41,4 +52,8 @@ inline const b2Rot& Transform::GetRotation() const {
 };
 inline const float32 Transform::GetAngle() const {
 	return baseTransform.q.GetAngle();
+};
+
+inline b2Transform Transform:: GetBaseTransform() const {
+	return baseTransform;
 };

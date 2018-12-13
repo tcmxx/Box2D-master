@@ -652,13 +652,27 @@ void DebugDraw::Destroy()
 	m_triangles = NULL;
 }
 
+
+void DebugDraw::DrawBox(const b2Vec2& size, const b2Vec2& center,const b2Color& color, const b2Transform& transform) {
+	b2Vec2 vertices[4] = { b2Vec2(size.x,size.y ) + center,b2Vec2(size.x ,-size.y ) + center ,
+		b2Vec2(-size.x ,-size.y) + center ,b2Vec2(-size.x ,size.y ) + center };
+	DrawPolygon(vertices, 4, color, transform);
+}
+
+void DebugDraw::DrawSolidBox(const b2Vec2& size, const b2Vec2& center,const b2Color& color, const b2Transform& transform) {
+	b2Vec2 vertices[4] = { b2Vec2(size.x,size.y) + center,b2Vec2(size.x ,-size.y) + center ,
+		b2Vec2(-size.x ,-size.y) + center ,b2Vec2(-size.x ,size.y) + center }; 
+	DrawSolidPolygon(vertices, 4, color, transform);
+}
+
+
 //
-void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
+void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color, const b2Transform& transform)
 {
-    b2Vec2 p1 = vertices[vertexCount - 1];
+    b2Vec2 p1 = b2Mul(transform, vertices[vertexCount - 1]);
 	for (int32 i = 0; i < vertexCount; ++i)
 	{
-        b2Vec2 p2 = vertices[i];
+        b2Vec2 p2 = b2Mul(transform, vertices[i]);
 		m_lines->Vertex(p1, color);
 		m_lines->Vertex(p2, color);
         p1 = p2;
@@ -666,21 +680,21 @@ void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2C
 }
 
 //
-void DebugDraw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
+void DebugDraw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color, const b2Transform& transform)
 {
 	b2Color fillColor(0.5f * color.r, 0.5f * color.g, 0.5f * color.b, 0.5f);
 
     for (int32 i = 1; i < vertexCount - 1; ++i)
     {
-        m_triangles->Vertex(vertices[0], fillColor);
-        m_triangles->Vertex(vertices[i], fillColor);
-        m_triangles->Vertex(vertices[i+1], fillColor);
+        m_triangles->Vertex(b2Mul(transform, vertices[0]), fillColor);
+        m_triangles->Vertex(b2Mul(transform, vertices[i]), fillColor);
+        m_triangles->Vertex(b2Mul(transform, vertices[i+1]), fillColor);
     }
 
-    b2Vec2 p1 = vertices[vertexCount - 1];
+    b2Vec2 p1 = b2Mul(transform, vertices[vertexCount - 1]);
 	for (int32 i = 0; i < vertexCount; ++i)
 	{
-        b2Vec2 p2 = vertices[i];
+        b2Vec2 p2 = b2Mul(transform, vertices[i]);
 		m_lines->Vertex(p1, color);
 		m_lines->Vertex(p2, color);
         p1 = p2;
@@ -756,28 +770,12 @@ void DebugDraw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Ve
 }
 
 //
-void DebugDraw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
+void DebugDraw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color, const b2Transform& transform)
 {
-	m_lines->Vertex(p1, color);
-	m_lines->Vertex(p2, color);
+	m_lines->Vertex(b2Mul(transform,p1), color);
+	m_lines->Vertex(b2Mul(transform, p2), color);
 }
 
-//
-void DebugDraw::DrawTransform(const b2Transform& xf)
-{
-	const float32 k_axisScale = 0.4f;
-    b2Color red(1.0f, 0.0f, 0.0f);
-    b2Color green(0.0f, 1.0f, 0.0f);
-	b2Vec2 p1 = xf.p, p2;
-
-	m_lines->Vertex(p1, red);
-	p2 = p1 + k_axisScale * xf.q.GetXAxis();
-	m_lines->Vertex(p2, red);
-
-	m_lines->Vertex(p1, green);
-	p2 = p1 + k_axisScale * xf.q.GetYAxis();
-	m_lines->Vertex(p2, green);
-}
 
 //
 void DebugDraw::DrawPoint(const b2Vec2& p, float32 size, const b2Color& color)
@@ -812,26 +810,6 @@ void DebugDraw::DrawString(const b2Vec2& pw, const char *string, ...)
 	va_end(arg);
 }
 
-//
-void DebugDraw::DrawAABB(b2AABB* aabb, const b2Color& c)
-{
-    b2Vec2 p1 = aabb->lowerBound;
-    b2Vec2 p2 = b2Vec2(aabb->upperBound.x, aabb->lowerBound.y);
-    b2Vec2 p3 = aabb->upperBound;
-    b2Vec2 p4 = b2Vec2(aabb->lowerBound.x, aabb->upperBound.y);
-    
-    m_lines->Vertex(p1, c);
-    m_lines->Vertex(p2, c);
-
-    m_lines->Vertex(p2, c);
-    m_lines->Vertex(p3, c);
-
-    m_lines->Vertex(p3, c);
-    m_lines->Vertex(p4, c);
-
-    m_lines->Vertex(p4, c);
-    m_lines->Vertex(p1, c);
-}
 
 //
 void DebugDraw::Flush()

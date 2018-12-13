@@ -9,6 +9,15 @@
 using namespace std;
 class Scene;
 
+
+
+//can be used to serizlie gameobject data
+//empty right now
+struct SerializedGameObjectData {
+
+};
+
+
 class GameObject
 {
 public:
@@ -58,7 +67,7 @@ public:
 	inline Scene* GetScene();
 
 	//virtual functions to call for inherited classes
-	virtual void OnInstantiated() {};
+	virtual void Construct(SerializedGameObjectData* data) {};
 	virtual void Start() {};
 	virtual void FixedUpdate(float32 deltaTime) {};
 	virtual void OnRender() {};
@@ -94,6 +103,7 @@ private:
 
 	bool started = false;
 	bool active = true;
+	bool destroyed = false;
 };
 
 

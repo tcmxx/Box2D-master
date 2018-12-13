@@ -17,18 +17,20 @@ public:
 	~Scene();
 
 	//mark the gameobject to be destroyed at the next fixed update.
-	//void Destroy(GameObject* gameObject);
+	void Destroy(GameObject* gameObject);
 
+	//this is dangerous because if might cause issues in physics simulation if this is called in phsyics callbacks.
 	void DestroyGameObjectImmediately(GameObject* gameObject);
 	void FixedUpdate();
 
 	Physics2D* GetPhysics2D();
 
 
-
+	//-------------------------------------------------------------
 	//---------------Instantiation functions----------------------
+	//-------------------------------------------------------------
 	template <typename T>
-	T* InstantiateGameObject(const b2Vec2 &p, float32 angle, string name) {
+	T* InstantiateGameObject(const b2Vec2 &p, float32 angle, string name, SerializedGameObjectData*  gameObjectData = nullptr) {
 		static_assert(std::is_base_of<GameObject, T>::value, "T must derive from GameObject");
 		
 		T* newObj = new T();
@@ -51,22 +53,25 @@ public:
 			gameObjectFirst = newObj;
 		}
 
-		newObj->OnInstantiated();
+		newObj->Construct(gameObjectData);
 		return newObj;
 	};
 	template <typename T>
-	T* InstantiateGameObject() {
-		return InstantiateGameObject<T>(b2Vec2_zero, 0, "GameObject");
+	T* InstantiateGameObject(SerializedGameObjectData* gameObjectData = nullptr) {
+		return InstantiateGameObject<T>(b2Vec2_zero, 0, "GameObject", gameObjectData);
 	}
 	template <typename T>
-	T* InstantiateGameObject(string name) {
-		return InstantiateGameObject<T>(b2Vec2_zero, 0, name);
+	T* InstantiateGameObject(string name, SerializedGameObjectData* gameObjectData = nullptr) {
+		return InstantiateGameObject<T>(b2Vec2_zero, 0, name, gameObjectData);
 	}
 	template <typename T>
-	T* InstantiateGameObject(const b2Vec2 &p, float32 angle) {
-		return InstantiateGameObject<T>(p, angle, "GameObject");
+	T* InstantiateGameObject(const b2Vec2 &p, float32 angle, SerializedGameObjectData* gameObjectData = nullptr) {
+		return InstantiateGameObject<T>(p, angle, "GameObject", gameObjectData);
 	}
 	//---------------------------------------------------------
+	//-------------------------------------------------------------
+	//-------------------------------------------------------------
+
 
 private:
 	friend class Engine;

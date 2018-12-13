@@ -3,7 +3,32 @@
 #include "HelloWorld\Engine\Engine.h"
 #include "TargetBall.h"
 
-void GameController::OnInstantiated() {
+GameController* GameController::instance;
+
+
+
+
+void GameController::AddPlayerPoint(bool isPlayerOne) {
+	if (isPlayerOne) {
+		playerOnePoint++;
+	}
+	else {
+		playerTwoPoint++;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+void GameController::Construct(SerializedGameObjectData* data) {
+	instance = this;
 	mainCamera = Engine::GetMainCamera();
 }
 
@@ -14,9 +39,8 @@ void GameController::FixedUpdate(float32 deltaTime) {
 	}
 }
 
-
-
 void GameController::OnGUI() {
+	return;
 	int menuWidth = 200;
 	ImGui::SetNextWindowPos(ImVec2((float)mainCamera->m_width - menuWidth - 10, 10));
 	ImGui::SetNextWindowSize(ImVec2((float)menuWidth, (float)mainCamera->m_height - 20));

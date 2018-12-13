@@ -7,7 +7,11 @@
 
 #include "Game\TargetBall.h"
 #include "Game\GameController.h"
+#include "Game\StaticWall.h"
+#include "Game\TargetSpawner.h"
+#include "Game\Basket.h"
 
+void CreateObjects(Scene* scene);
 
 int main(int argc, char** argv)
 {
@@ -15,16 +19,7 @@ int main(int argc, char** argv)
 
 	Scene* scene = Engine::GetScene();
 
-	//create the ground object
-	GameObject* groundObject = scene->InstantiateGameObject<GameObject>("Floor");
-	auto boxcollider = groundObject->AddComponent<BoxCollider2D>();
-	boxcollider->SetBox(b2Vec2(10, 1), b2Vec2_zero, 0);
-	auto groundBody = groundObject->AddComponent<Rigidbody2D>();
-	groundBody->SetType(b2_staticBody);
-
-	scene->InstantiateGameObject<TargetBall>(b2Vec2(0, 20),0);
-
-	scene->InstantiateGameObject<GameController>();
+	CreateObjects(scene);
 
 	Engine::Run();
 
@@ -32,4 +27,39 @@ int main(int argc, char** argv)
 	// create orphaned pointers, so be careful about your world management.
 
 	return 0;
+}
+
+void CreateObjects(Scene* scene) {
+
+
+	//scene->InstantiateGameObject<TargetBall>(b2Vec2(0, 20), 0);
+
+
+	//create the static walls of the scene
+	StaticWallData wallDataground;
+	wallDataground.size = b2Vec2(20, 1);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(0, 0), 0, "Ground", &wallDataground);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(-45, 0), 0, "Ground", &wallDataground);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(45, 0), 0, "Ground", &wallDataground);
+	StaticWallData wallDataleft;
+	wallDataleft.size = b2Vec2(1, 10);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(-30,10),0,"WallLeft", &wallDataleft);
+	StaticWallData wallDataRight;
+	wallDataRight.size = b2Vec2(1, 10);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(30, 10), 0, "WallRight", &wallDataRight);
+
+	//the baskets
+	BasketData playerOneBasketData;
+	playerOneBasketData.isPlayerOne = true;
+	playerOneBasketData.color = b2Color(0, 1, 0, 1);
+	scene->InstantiateGameObject<Basket>(b2Vec2(-22.5f, -2), 0, "PlayerOneBasket", &playerOneBasketData);
+	BasketData playerTwoBasketData;
+	playerTwoBasketData.isPlayerOne = false;
+	playerTwoBasketData.color = b2Color(0, 0, 1, 1);
+	scene->InstantiateGameObject<Basket>(b2Vec2(22.5, -2), 0, "PlayerTwoBasket", &playerTwoBasketData);
+
+
+	//game logic related
+	scene->InstantiateGameObject<GameController>();
+	scene->InstantiateGameObject<TargetSpawner>();
 }

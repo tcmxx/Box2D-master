@@ -33,6 +33,7 @@ private:
 
 	// physics a world object, which will hold and simulate the rigid bodies.
 	b2World world2D;
+	
 };
 
 inline b2World* Physics2D::GetWorld2D() {

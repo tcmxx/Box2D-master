@@ -32,7 +32,7 @@ struct GLRenderTriangles;
 
 // This class implements debug drawing callbacks that are invoked
 // inside b2World::Step.
-class DebugDraw : public b2Draw
+class DebugDraw 
 {
 public:
 	DebugDraw();
@@ -41,25 +41,25 @@ public:
 	void Create(Camera* camera);
 	void Destroy();
 
-	void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) override;
+	void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color, const b2Transform& transform = b2Transform());
 
-	void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) override;
+	void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color, const b2Transform& transform = b2Transform());
 
-	void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) override;
+	void DrawBox(const b2Vec2& size, const b2Vec2& center, const b2Color& color, const b2Transform& transform = b2Transform());
 
-	void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) override;
+	void DrawSolidBox(const b2Vec2& size, const b2Vec2& center, const b2Color& color, const b2Transform& transform = b2Transform());
 
-	void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color) override;
+	void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color);
 
-	void DrawTransform(const b2Transform& xf) override;
+	void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color);
 
-	void DrawPoint(const b2Vec2& p, float32 size, const b2Color& color) override;
+	void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color, const b2Transform& transform = b2Transform());
+
+	void DrawPoint(const b2Vec2& p, float32 size, const b2Color& color);
 
 	void DrawString(int x, int y, const char* string, ...); 
 
 	void DrawString(const b2Vec2& p, const char* string, ...);
-
-	void DrawAABB(b2AABB* aabb, const b2Color& color);
 
 	void Flush();
 

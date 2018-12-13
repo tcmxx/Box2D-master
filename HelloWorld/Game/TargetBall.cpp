@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-void TargetBall::OnInstantiated() {
+void TargetBall::Construct(SerializedGameObjectData* data) {
 
 
 	auto collider = AddComponent<CircleCollider2D>();
@@ -16,20 +16,20 @@ void TargetBall::OnInstantiated() {
 
 	Rigidbody2D* body = AddComponent<Rigidbody2D>();
 	body->SetType(b2_dynamicBody);
-
+	body->SetAngularDamping(0);
 	debugDraw = Engine::GetDebugDraw();
 }
 
 
 
 void TargetBall::OnRender() {
-	debugDraw->DrawCircle(GetTransform()->GetPosition(),DEFAULT_RADIUS, b2Color(1,0,0,1));
+	debugDraw->DrawSolidCircle(GetTransform()->GetPosition(),DEFAULT_RADIUS, b2Vec2(1,0),b2Color(1,0,0,1));
 }
 
 
 void TargetBall::OnCollisionEnter(CollisionInfo2D collision) {
-	auto position = collision.other->GetGameObject()->name;
-	printf("Collision Enter: %s\n", position.c_str());
+	//auto position = collision.other->GetGameObject()->name;
+	//printf("Collision Enter: %s\n", position.c_str());
 
 };
 void TargetBall::OnCollisionExit(CollisionInfo2D collision) {

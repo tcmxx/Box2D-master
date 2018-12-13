@@ -14,8 +14,22 @@ void BoxCollider2D::SetBox(const b2Vec2 &size, const b2Vec2 &center, float32 ang
 	}
 	else {
 		shapeInitialShape.SetAsBox(size.x, size.y, center, angle);
+		this->size = size;
+		this->center = center;
+		this->angle = angle;
 	}
 }
+
+b2Vec2 BoxCollider2D::GetSize() {
+	return size;
+}
+b2Vec2 BoxCollider2D::GetCenter() {
+	return center;
+}
+float32 BoxCollider2D::GetAngle() {
+	return angle;
+}
+
 
 const b2Shape& BoxCollider2D::GetShape()  const {
 	return shapeInitialShape;
