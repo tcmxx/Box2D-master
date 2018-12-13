@@ -1,7 +1,8 @@
 #include "Scene.h"
 
-Scene::Scene(float tickRate):gameTime(tickRate), world2D(DEFAULT_GRAVITY)
+Scene::Scene(float tickRate):gameTime(tickRate)
 {
+	
 }
 
 
@@ -44,8 +45,7 @@ void Scene::FixedUpdate() {
 	
 	float32 interval = gameTime.GetTickInterval();
 
-	//step the physics2D world
-	world2D.Step(interval, physics2DSetting.velocityIterations, physics2DSetting.positionIterations);
+	physics2D.Step();
 
 	//step the game objects
 	GameObject* currentObj = gameObjectFirst;
@@ -71,9 +71,3 @@ void Scene::FixedUpdate() {
 	gameTime.tick++;
 }
 
-b2World* Scene::GetWorld2D() {
-	return &world2D;
-}
-void Scene::SetGravity(b2Vec2 gravity) {
-	world2D.SetGravity(gravity);
-}

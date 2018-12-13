@@ -55,6 +55,7 @@ public:
 	static Camera* GetMainCamera();
 	static DebugDraw* GetDebugDraw();
 	static InputManager* GetInput();
+	static Physics2D* GetPhysics2D();
 protected:
 	static void glfwErrorCallback(int error, const char *description);
 	static void sScrollCallback(GLFWwindow* window, double dx, double dy);
@@ -74,9 +75,23 @@ private:
 };
 
 
+inline Scene* Engine::GetScene() {
+	return &scene;
+}
+inline Camera* Engine::GetMainCamera() {
+	return &mainCamera;
+}
+inline DebugDraw* Engine::GetDebugDraw() {
+	return &debugDraw;
+}
 
+inline InputManager* Engine::GetInput() {
+	return &input;
+}
 
-
+inline Physics2D* Engine::GetPhysics2D() {
+	return &scene.physics2D;
+}
 
 
 

@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include <vector>
 #include "Component.h"
+#include "Physics2D.h"
 
 using namespace std;
 class Scene;
@@ -65,10 +66,10 @@ public:
 	virtual void OnDestroyed() {};
 
 	//need to be implemented
-	virtual void OnCollisionEnter() {};
-	virtual void OnCollisionExit() {};
-	virtual void OnTriggerEnter() {};
-	virtual void OnTriggerExit() {};
+	virtual void OnCollisionEnter(CollisionInfo2D collision) {};
+	virtual void OnCollisionExit(CollisionInfo2D collision) {};
+	//virtual void OnTriggerEnter() {};
+	//virtual void OnTriggerExit() {};
 
 	string name;
 

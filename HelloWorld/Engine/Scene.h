@@ -3,14 +3,11 @@
 #include "GameObject.h"
 #include <vector>
 #include "Time.h"
+#include "Physics2D.h"
+
 using namespace std;
 
 
-//for now the settings are defined here
-struct Physics2DSetting {
-	int32 velocityIterations = 6;
-	int32 positionIterations = 2;
-};
 
 
 class Scene {
@@ -19,13 +16,23 @@ public:
 	Scene(float tickRate);
 	~Scene();
 
+	//mark the gameobject to be destroyed at the next fixed update.
+	//void Destroy(GameObject* gameObject);
+
+	void DestroyGameObjectImmediately(GameObject* gameObject);
+	void FixedUpdate();
+
+	Physics2D* GetPhysics2D();
 
 
+
+	//---------------Instantiation functions----------------------
 	template <typename T>
-	T* InstantiateGameObject(const b2Vec2 &p, float32 angle) {
+	T* InstantiateGameObject(const b2Vec2 &p, float32 angle, string name) {
 		static_assert(std::is_base_of<GameObject, T>::value, "T must derive from GameObject");
 		
 		T* newObj = new T();
+		newObj->name = name;
 		Transform* trans = newObj->GetTransform();
 		trans->SetAngle(angle);
 		trans->SetPosition(p);
@@ -49,30 +56,31 @@ public:
 	};
 	template <typename T>
 	T* InstantiateGameObject() {
-		return InstantiateGameObject<T>(b2Vec2_zero, 0);
+		return InstantiateGameObject<T>(b2Vec2_zero, 0, "GameObject");
 	}
-
-	//mark the gameobject to be destroyed at the next fixed update.
-	//void Destroy(GameObject* gameObject);
-
-	void DestroyGameObjectImmediately(GameObject* gameObject);
-	void FixedUpdate();
-
-	b2World* GetWorld2D();
-	void SetGravity(b2Vec2 gravity);
+	template <typename T>
+	T* InstantiateGameObject(string name) {
+		return InstantiateGameObject<T>(b2Vec2_zero, 0, name);
+	}
+	template <typename T>
+	T* InstantiateGameObject(const b2Vec2 &p, float32 angle) {
+		return InstantiateGameObject<T>(p, angle, "GameObject");
+	}
+	//---------------------------------------------------------
 
 private:
+	friend class Engine;
+
 	GameTime gameTime;
-	// Define the gravity vector.
-	const b2Vec2 DEFAULT_GRAVITY = b2Vec2(0.0f, -10.0f);
 
-
-	// physics a world object, which will hold and simulate the rigid bodies.
-	b2World world2D;
-	Physics2DSetting physics2DSetting;
+	Physics2D physics2D;
 
 	//right now just use linked list to storeall GameObjects
 	GameObject* gameObjectFirst = nullptr;
 	GameObject* gameObjectLast = nullptr;
 };
 
+
+inline Physics2D* Scene::GetPhysics2D() {
+	return &physics2D;
+}

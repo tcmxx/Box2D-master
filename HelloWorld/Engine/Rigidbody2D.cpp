@@ -6,8 +6,8 @@
 void Rigidbody2D::OnAddedToGameObject() {
 	Scene* scene = gameObject->GetScene();
 	Transform* currentTrans = gameObject->GetTransform();
-	auto world = scene->GetWorld2D();
-
+	//auto world = scene->physics2D.GetWorld2D();
+	auto world = scene->GetPhysics2D()->GetWorld2D();
 	body = world->CreateBody(&bodyDef);
 	body->SetTransform(currentTrans->GetPosition(), currentTrans->GetAngle());
 	//add the existing collider shapes to the rigid body
@@ -22,6 +22,7 @@ void Rigidbody2D::OnAddedToGameObject() {
 void Rigidbody2D::RegisterCollider2D(Collider2D* collider) {
 	collider->fixtureDef.shape = &(collider->GetShape());
 	collider->fixture = body->CreateFixture(&(collider->fixtureDef));
+	collider->fixture->SetUserData(collider);
 }
 
 
@@ -154,6 +155,7 @@ void Rigidbody2D::FixedUpdate(float fixedDeltaTime) {
 	trans->SetPosition(bodyTrans.p);
 };
 void Rigidbody2D::OnDestroyed() {
+	body->GetWorld()->DestroyBody(body);
 };
 void Rigidbody2D::OnRender() {
 };

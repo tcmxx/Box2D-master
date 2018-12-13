@@ -32,13 +32,13 @@ public:
 	bool GetMouseUp(int button);
 
 	b2Vec2 GetMouseDelta();
-
+	b2Vec2 GetMousePosition();
 protected:
 	friend class Engine;
 
 	void KeyCallBack(int key, int scancode, int action, int mods);
 	void MouseCallBack(int key, int action, int mods);
-	void MouseDeltaCallBack(float xd, float yd);
+	void MouseDeltaCallBack(float xd, float yd, float x, float y);
 
 	void Flush();
 private:
@@ -53,5 +53,7 @@ private:
 
 	float deltaX = 0;
 	float deltaY = 0;
+	float mouseX = 0;
+	float mouseY = 0;
 };
 

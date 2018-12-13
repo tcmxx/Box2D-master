@@ -57,13 +57,14 @@ void Collider2D::OnAddedToGameObject() {
 }
 
 
-
-
 void Collider2D::Start() {
 };
 void Collider2D::FixedUpdate(float fixedDeltaTime) {
 };
 void Collider2D::OnDestroyed() {
+	if (fixture != nullptr) {
+		fixture->SetUserData(nullptr);
+	}
 };
 void Collider2D::OnRender() {
 };

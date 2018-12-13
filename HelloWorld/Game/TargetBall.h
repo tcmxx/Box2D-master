@@ -15,6 +15,8 @@ public :
 
 	void OnInstantiated() override;
 	void OnRender() override;
+	void OnCollisionEnter(CollisionInfo2D collision) override;
+	void OnCollisionExit(CollisionInfo2D collision) override;
 protected:
 
 

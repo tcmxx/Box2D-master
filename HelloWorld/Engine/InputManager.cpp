@@ -45,7 +45,9 @@ bool InputManager::GetMouseUp(int button) {
 b2Vec2 InputManager::GetMouseDelta() {
 	return b2Vec2(deltaX, deltaY);
 }
-
+b2Vec2 InputManager::GetMousePosition() {
+	return b2Vec2(mouseX, mouseY);
+}
 
 void InputManager::Flush() {
 	down.clear();
@@ -57,9 +59,11 @@ void InputManager::Flush() {
 }
 
 
-void InputManager::MouseDeltaCallBack(float xd, float yd) {
+void InputManager::MouseDeltaCallBack(float xd, float yd, float x, float y) {
 	deltaX = xd;
 	deltaY = yd;
+	mouseX = x;
+	mouseY = y;
 }
 
 void InputManager::MouseCallBack(int button, int action, int mods) {

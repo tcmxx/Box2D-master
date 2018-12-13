@@ -8,8 +8,9 @@ void GameController::OnInstantiated() {
 }
 
 void GameController::FixedUpdate(float32 deltaTime) {
-	if (Engine::GetInput()->GetKeyDown(Arrow_Down)) {
-		GetScene()->InstantiateGameObject<TargetBall>(b2Vec2(0, 20), 0);
+	if (Engine::GetInput()->GetMouseDown(0)) {
+		
+		GetScene()->InstantiateGameObject<TargetBall>(mainCamera->ConvertScreenToWorld(Engine::GetInput()->GetMousePosition()), 0);
 	}
 }
 

@@ -2,6 +2,8 @@
 
 #include "HelloWorld\Engine\Engine.h"
 
+#include <string>
+#include <iostream>
 
 void TargetBall::OnInstantiated() {
 
@@ -23,3 +25,13 @@ void TargetBall::OnInstantiated() {
 void TargetBall::OnRender() {
 	debugDraw->DrawCircle(GetTransform()->GetPosition(),DEFAULT_RADIUS, b2Color(1,0,0,1));
 }
+
+
+void TargetBall::OnCollisionEnter(CollisionInfo2D collision) {
+	auto position = collision.other->GetGameObject()->name;
+	printf("Collision Enter: %s\n", position.c_str());
+
+};
+void TargetBall::OnCollisionExit(CollisionInfo2D collision) {
+
+};

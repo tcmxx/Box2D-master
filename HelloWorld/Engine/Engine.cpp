@@ -88,19 +88,6 @@ int Engine::Initialize() {
 	debugDraw.Create(&mainCamera);
 }
 
-Scene* Engine::GetScene() {
-	return &scene;
-}
-Camera* Engine::GetMainCamera() {
-	return &mainCamera;
-}
-DebugDraw* Engine::GetDebugDraw() {
-	return &debugDraw;
-}
-
-InputManager* Engine::GetInput() {
-	return &input;
-}
 
 void Engine::Run() {
 	// This is our little game loop.
@@ -201,7 +188,9 @@ void Engine::sMouseButton(GLFWwindow* window, int32 button, int32 action, int32 
 //
  void Engine::sMouseMotion(GLFWwindow*, double xd, double yd)
 {
-	 input.MouseDeltaCallBack((float)xd, (float)yd);
+	 double x, y;
+	 glfwGetCursorPos(mainWindow, &x, &y);
+	 input.MouseDeltaCallBack((float)xd, (float)yd, (float)x, (float)y);
 }
 
  //

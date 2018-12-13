@@ -15,17 +15,8 @@ int main(int argc, char** argv)
 
 	Scene* scene = Engine::GetScene();
 
-	//create the ball object
-	GameObject* testObject = scene->InstantiateGameObject<GameObject>();
-	auto collider = testObject->AddComponent<CircleCollider2D>();
-	collider->SetCircle(1, b2Vec2_zero);
-	testObject->AddComponent<Rigidbody2D>();
-	Rigidbody2D* comp = testObject->GetComponent<Rigidbody2D>();
-	comp->SetType(b2_dynamicBody);
-	comp->SetTransform(b2Vec2(0, 10), 0);
-
 	//create the ground object
-	GameObject* groundObject = scene->InstantiateGameObject<GameObject>();
+	GameObject* groundObject = scene->InstantiateGameObject<GameObject>("Floor");
 	auto boxcollider = groundObject->AddComponent<BoxCollider2D>();
 	boxcollider->SetBox(b2Vec2(10, 1), b2Vec2_zero, 0);
 	auto groundBody = groundObject->AddComponent<Rigidbody2D>();
