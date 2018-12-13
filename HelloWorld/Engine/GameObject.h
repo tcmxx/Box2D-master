@@ -61,6 +61,7 @@ public:
 	virtual void Start() {};
 	virtual void FixedUpdate(float32 deltaTime) {};
 	virtual void OnRender() {};
+	virtual void OnGUI() {};
 	virtual void OnDestroyed() {};
 
 	//need to be implemented
@@ -82,6 +83,7 @@ private:
 	
 	void InnerFixedUpdate(float32 deltaTime);
 	void Render();
+	void RenderGUI();
 
 	vector<Component *> componentVector;
 	Transform transform;

@@ -22,6 +22,8 @@ Engine::~Engine()
 
 
 
+//Initalize the engine.
+//A lot of the initalization codes are from box2d testbed.
 int Engine::Initialize() {
 
 #if defined(_WIN32)
@@ -77,8 +79,6 @@ int Engine::Initialize() {
 	glfwSetCursorPosCallback(mainWindow, sMouseMotion);
 	glfwSetScrollCallback(mainWindow, sScrollCallback);
 
-
-
 	sCreateUI(mainWindow);
 	glfwSwapInterval(1);
 
@@ -97,6 +97,11 @@ Camera* Engine::GetMainCamera() {
 DebugDraw* Engine::GetDebugDraw() {
 	return &debugDraw;
 }
+
+InputManager* Engine::GetInput() {
+	return &input;
+}
+
 void Engine::Run() {
 	// This is our little game loop.
 	while (!glfwWindowShouldClose(mainWindow))
@@ -110,20 +115,11 @@ void Engine::Run() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		ImGui_ImplGlfwGL3_NewFrame();
-		ImGui::SetNextWindowPos(ImVec2(0, 0));
-		ImGui::SetNextWindowSize(ImVec2((float)mainCamera.m_width, (float)mainCamera.m_height));
-		ImGui::Begin("Overlay", NULL, ImVec2(0, 0), 0.0f, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoInputs | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoScrollbar);
-		ImGui::SetCursorPos(ImVec2(5, (float)mainCamera.m_height - 20));
-		ImGui::End();
 
 		scene.FixedUpdate();
 
-
 		debugDraw.Flush();
 		input.Flush();
-
-		sInterface();
-
 		ImGui::Render();
 		glfwSwapBuffers(mainWindow);
 		glfwPollEvents();
@@ -134,45 +130,8 @@ void Engine::Run() {
 }
 
 
-
-//
-void Engine::sInterface()
-{
-	int menuWidth = 200;
-	ImGui::SetNextWindowPos(ImVec2((float)mainCamera.m_width - menuWidth - 10, 10));
-	ImGui::SetNextWindowSize(ImVec2((float)menuWidth, (float)mainCamera.m_height - 20));
-	ImGui::Begin("Test UI", NULL, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-	ImGui::PushAllowKeyboardFocus(false); // Disable TAB
-
-	ImGui::PushItemWidth(-1.0f);
-
-	ImGui::Separator();
-
-	int temp;
-	float tempFLoat;
-	bool tempBool;
-
-	ImGui::Text("Vel Iters");
-	ImGui::SliderInt("##Vel Iters", &temp, 0, 50);
-	ImGui::Text("Pos Iters");
-	ImGui::SliderFloat("##Hertz", &tempFLoat, 5.0f, 120.0f, "%.0f hz");
-	ImGui::PopItemWidth();
-
-	ImGui::Checkbox("Sleep", &tempBool);
-
-	ImGui::Separator();
-
-	ImGui::Checkbox("Shapes", &tempBool);
-
-	ImVec2 button_sz = ImVec2(-1, 0);
-
-	if (ImGui::Button("Quit", button_sz))
-		glfwSetWindowShouldClose(mainWindow, GL_TRUE);
-
-	ImGui::PopAllowKeyboardFocus();
-	ImGui::End();
-
-
+void Engine::Close() {
+	glfwSetWindowShouldClose(mainWindow, GL_TRUE);
 }
 
 
@@ -200,9 +159,6 @@ void Engine::sCreateUI(GLFWwindow* window)
 	style.DisplayWindowPadding = ImVec2(0, 0);
 	style.DisplaySafeAreaPadding = ImVec2(0, 0);
 }
-
-
-
 
 //
 void Engine::sResizeWindow(GLFWwindow* window, int width, int height)

@@ -60,6 +60,15 @@ void Scene::FixedUpdate() {
 		currentObj->Render();
 		currentObj = currentObj->next;
 	}
+
+	//call all OnGUI
+	currentObj = gameObjectFirst;
+	while (currentObj != nullptr) {
+		currentObj->RenderGUI();
+		currentObj = currentObj->next;
+	}
+
+	gameTime.tick++;
 }
 
 b2World* Scene::GetWorld2D() {

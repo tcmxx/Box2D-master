@@ -51,3 +51,8 @@ void GameObject::Render() {
 		OnRender();
 	}
 }
+void GameObject::RenderGUI() {
+	if (active) {
+		OnGUI();
+	}
+}

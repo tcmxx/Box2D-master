@@ -49,10 +49,12 @@ public:
 
 	static int Initialize();
 	static void Run();
-	
+	static void Close();
+
 	static Scene* GetScene();
 	static Camera* GetMainCamera();
 	static DebugDraw* GetDebugDraw();
+	static InputManager* GetInput();
 protected:
 	static void glfwErrorCallback(int error, const char *description);
 	static void sScrollCallback(GLFWwindow* window, double dx, double dy);
@@ -63,7 +65,6 @@ protected:
 	static void sMouseMotion(GLFWwindow*, double xd, double yd);
 
 	static void sCreateUI(GLFWwindow* window);
-	static void sInterface();
 private:
 	static GLFWwindow * mainWindow;
 	static Camera mainCamera;

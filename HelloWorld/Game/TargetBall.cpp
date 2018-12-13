@@ -21,6 +21,5 @@ void TargetBall::OnInstantiated() {
 
 
 void TargetBall::OnRender() {
-	
 	debugDraw->DrawCircle(GetTransform()->GetPosition(),DEFAULT_RADIUS, b2Color(1,0,0,1));
 }
