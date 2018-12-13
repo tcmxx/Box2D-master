@@ -8,6 +8,7 @@
 #include "CircleCollider2D.h"
 #include "BoxCollider2D.h"
 #include "Camera.h"
+#include "InputManager.h"
 
 #include "HelloWorld\DebugDraw.h"
 
@@ -68,6 +69,7 @@ private:
 	static Camera mainCamera;
 	static Scene scene;	//right now only one scene is supported
 	static DebugDraw debugDraw;
+	static InputManager input;
 };
 
 

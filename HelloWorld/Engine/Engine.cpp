@@ -1,10 +1,14 @@
 #include "Engine.h"
 
 
+
+
+
 GLFWwindow* Engine::mainWindow = nullptr;
 Camera Engine::mainCamera;
 Scene Engine::scene = Scene(60);
 DebugDraw Engine::debugDraw;
+InputManager Engine::input;
 
 Engine::Engine()
 {
@@ -112,18 +116,11 @@ void Engine::Run() {
 		ImGui::SetCursorPos(ImVec2(5, (float)mainCamera.m_height - 20));
 		ImGui::End();
 
-
-
-
 		scene.FixedUpdate();
-		// Now print the position and angle of the body.
-		//auto trans = comp->GetTransform();
-		//b2Vec2 position = trans.p;
-		//float32 angle = trans.q.GetAngle();
 
-		//printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 
 		debugDraw.Flush();
+		input.Flush();
 
 		sInterface();
 
@@ -206,32 +203,23 @@ void Engine::sCreateUI(GLFWwindow* window)
 
 
 
-//
-void Engine::sScrollCallback(GLFWwindow* window, double dx, double dy)
-{
-	ImGui_ImplGlfwGL3_ScrollCallback(window, dx, dy);
-	bool mouse_for_ui = ImGui::GetIO().WantCaptureMouse;
 
-	if (!mouse_for_ui)
-	{
-		if (dy > 0)
-		{
-			//g_camera.m_zoom /= 1.1f;
-		}
-		else
-		{
-			//g_camera.m_zoom *= 1.1f;
-		}
-	}
-}
 //
 void Engine::sResizeWindow(GLFWwindow* window, int width, int height)
 {
-	//g_camera.m_width = width;
-	//g_camera.m_height = height;
+	mainCamera.m_width = width;
+	mainCamera.m_height = height;
+}
+void Engine::sCharCallback(GLFWwindow* window, unsigned int c)
+{
+	ImGui_ImplGlfwGL3_CharCallback(window, c);
 }
 
-//
+
+//----------------- Input callbacks----------------------
+//-----------------------------------------------------------
+
+
 void Engine::sKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	ImGui_ImplGlfwGL3_KeyCallback(window, key, scancode, action, mods);
@@ -239,105 +227,7 @@ void Engine::sKeyCallback(GLFWwindow* window, int key, int scancode, int action,
 	if (keys_for_ui)
 		return;
 
-	if (action == GLFW_PRESS)
-	{
-		switch (key)
-		{
-		case GLFW_KEY_ESCAPE:
-			// Quit
-			glfwSetWindowShouldClose(mainWindow, GL_TRUE);
-			break;
-
-		case GLFW_KEY_LEFT:
-			// Pan left
-			if (mods == GLFW_MOD_CONTROL)
-			{
-			}
-			else
-			{
-				//g_camera.m_center.x -= 0.5f;
-			}
-			break;
-
-		case GLFW_KEY_RIGHT:
-			// Pan right
-			if (mods == GLFW_MOD_CONTROL)
-			{
-			}
-			else
-			{
-				//g_camera.m_center.x += 0.5f;
-			}
-			break;
-
-		case GLFW_KEY_DOWN:
-			// Pan down
-			if (mods == GLFW_MOD_CONTROL)
-			{
-			}
-			else
-			{
-				//g_camera.m_center.y -= 0.5f;
-			}
-			break;
-
-		case GLFW_KEY_UP:
-			// Pan up
-			if (mods == GLFW_MOD_CONTROL)
-			{
-			}
-			else
-			{
-				//g_camera.m_center.y += 0.5f;
-			}
-			break;
-
-		case GLFW_KEY_HOME:
-			// Reset view
-			//g_camera.m_zoom = 1.0f;
-			//g_camera.m_center.Set(0.0f, 20.0f);
-			break;
-
-		case GLFW_KEY_Z:
-			// Zoom out
-			//g_camera.m_zoom = b2Min(1.1f * g_camera.m_zoom, 20.0f);
-			break;
-
-		case GLFW_KEY_X:
-			// Zoom in
-			//g_camera.m_zoom = b2Max(0.9f * g_camera.m_zoom, 0.02f);
-			break;
-
-		case GLFW_KEY_R:
-			break;
-
-		case GLFW_KEY_SPACE:
-			break;
-
-		case GLFW_KEY_O:
-			break;
-
-		case GLFW_KEY_P:
-			break;
-
-		case GLFW_KEY_LEFT_BRACKET:
-			break;
-
-		case GLFW_KEY_RIGHT_BRACKET:
-			break;
-
-		}
-	}
-	else if (action == GLFW_RELEASE)
-	{
-	}
-	// else GLFW_REPEAT
-}
-
-//
-void Engine::sCharCallback(GLFWwindow* window, unsigned int c)
-{
-	ImGui_ImplGlfwGL3_CharCallback(window, c);
+	input.KeyCallBack(key, scancode, action, mods);
 }
 
 //
@@ -349,42 +239,18 @@ void Engine::sMouseButton(GLFWwindow* window, int32 button, int32 action, int32 
 	glfwGetCursorPos(mainWindow, &xd, &yd);
 	b2Vec2 ps((float32)xd, (float32)yd);
 
-	// Use the mouse to move things around.
-	if (button == GLFW_MOUSE_BUTTON_1)
-	{
-		//<##>
-		//ps.Set(0, 0);
-		//b2Vec2 pw = g_camera.ConvertScreenToWorld(ps);
-		if (action == GLFW_PRESS)
-		{
-			if (mods == GLFW_MOD_SHIFT)
-			{
-			}
-			else
-			{
-			}
-		}
-
-		if (action == GLFW_RELEASE)
-		{
-		}
-	}
-	else if (button == GLFW_MOUSE_BUTTON_2)
-	{
-		if (action == GLFW_PRESS)
-		{
-		}
-
-		if (action == GLFW_RELEASE)
-		{
-		}
-	}
+	input.MouseCallBack(button, action, mods);
 }
 
 //
  void Engine::sMouseMotion(GLFWwindow*, double xd, double yd)
 {
-	b2Vec2 ps((float)xd, (float)yd);
-
-	//b2Vec2 pw = g_camera.ConvertScreenToWorld(ps);
+	 input.MouseDeltaCallBack((float)xd, (float)yd);
 }
+
+ //
+ void Engine::sScrollCallback(GLFWwindow* window, double dx, double dy)
+ {
+	 ImGui_ImplGlfwGL3_ScrollCallback(window, dx, dy);
+	 bool mouse_for_ui = ImGui::GetIO().WantCaptureMouse;
+ }
