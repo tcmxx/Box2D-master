@@ -9,7 +9,7 @@ public:
 	static GameController*  GetInstance();
 
 	void AddPlayerPoint(bool isPlayerOne);
-
+	int GetPlayerPoint(int index);
 	///----------------callbacks-------------
 	void Construct(SerializedGameObjectData* data) override;
 	void OnGUI() override;

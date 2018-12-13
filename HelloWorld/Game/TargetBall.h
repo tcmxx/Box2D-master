@@ -11,7 +11,7 @@ public :
 	const float32 DEFAULT_RADIUS = 2.0f;
 	const float32 DEFAULT_RESTITUTION = 0.5f;
 	const float32 DEFAULT_DENSITY = 2.0f;
-	const float32 DEFAULT_FRICTION =0.5f;
+	const float32 DEFAULT_FRICTION =1.0f;
 
 	void Construct(SerializedGameObjectData* data) override;
 	void OnRender() override;

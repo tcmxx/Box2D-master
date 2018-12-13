@@ -105,9 +105,12 @@ void Engine::Run() {
 
 		scene.FixedUpdate();
 
+		
+
 		debugDraw.Flush();
-		input.Flush();
 		ImGui::Render();
+		input.Flush();
+		
 		glfwSwapBuffers(mainWindow);
 		glfwPollEvents();
 	}
@@ -177,7 +180,9 @@ void Engine::sKeyCallback(GLFWwindow* window, int key, int scancode, int action,
 void Engine::sMouseButton(GLFWwindow* window, int32 button, int32 action, int32 mods)
 {
 	ImGui_ImplGlfwGL3_MouseButtonCallback(window, button, action, mods);
-
+	bool keys_for_ui = ImGui::GetIO().WantCaptureMouse;
+	if (keys_for_ui)
+		return;
 	double xd, yd;
 	glfwGetCursorPos(mainWindow, &xd, &yd);
 	b2Vec2 ps((float32)xd, (float32)yd);

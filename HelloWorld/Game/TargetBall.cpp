@@ -16,14 +16,16 @@ void TargetBall::Construct(SerializedGameObjectData* data) {
 
 	Rigidbody2D* body = AddComponent<Rigidbody2D>();
 	body->SetType(b2_dynamicBody);
-	body->SetAngularDamping(0);
+	body->SetAngularDamping(0.1f);
+	body->SetLinearDamping(0.5f);
 	debugDraw = Engine::GetDebugDraw();
 }
 
 
 
 void TargetBall::OnRender() {
-	debugDraw->DrawSolidCircle(GetTransform()->GetPosition(),DEFAULT_RADIUS, b2Vec2(1,0),b2Color(1,0,0,1));
+	auto rot = GetTransform()->GetRotation();
+	debugDraw->DrawSolidCircle(GetTransform()->GetPosition(),DEFAULT_RADIUS, rot.GetXAxis(),b2Color(1,0,0,1));
 }
 
 

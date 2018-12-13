@@ -10,6 +10,7 @@
 #include "Game\StaticWall.h"
 #include "Game\TargetSpawner.h"
 #include "Game\Basket.h"
+#include "Game\GameplayUI.h"
 
 void CreateObjects(Scene* scene);
 
@@ -52,14 +53,17 @@ void CreateObjects(Scene* scene) {
 	BasketData playerOneBasketData;
 	playerOneBasketData.isPlayerOne = true;
 	playerOneBasketData.color = b2Color(0, 1, 0, 1);
-	scene->InstantiateGameObject<Basket>(b2Vec2(-22.5f, -2), 0, "PlayerOneBasket", &playerOneBasketData);
+	scene->InstantiateGameObject<Basket>(b2Vec2(-22.5f, -4), 0, "PlayerOneBasket", &playerOneBasketData);
 	BasketData playerTwoBasketData;
 	playerTwoBasketData.isPlayerOne = false;
 	playerTwoBasketData.color = b2Color(0, 0, 1, 1);
-	scene->InstantiateGameObject<Basket>(b2Vec2(22.5, -2), 0, "PlayerTwoBasket", &playerTwoBasketData);
+	scene->InstantiateGameObject<Basket>(b2Vec2(22.5, -4), 0, "PlayerTwoBasket", &playerTwoBasketData);
 
 
 	//game logic related
 	scene->InstantiateGameObject<GameController>();
 	scene->InstantiateGameObject<TargetSpawner>();
+
+	//UI
+	scene->InstantiateGameObject<GameplayUI>();
 }
