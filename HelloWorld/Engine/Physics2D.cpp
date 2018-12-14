@@ -88,7 +88,7 @@ std::vector<Collider2D*> Physics2D::SphereOverlay(b2Vec2 position, float32 radiu
 			}
 		}
 	}
-
+	tempFixturesHolder.clear();
 	return colliders;
 }
 

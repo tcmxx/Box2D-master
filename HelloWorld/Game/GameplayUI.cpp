@@ -4,6 +4,7 @@
 
 bool AbilityButton::isInUse1 = false;
 bool AbilityButton::isInUse2 = false;
+b2Vec2 GameplayUI::playerTwoCursor;
 
 AbilityButton::AbilityButton(Ability* ability, ImVec2 size, int playerIndex) :
 	mAbility(ability), mSize(size), mPlayerIndex(playerIndex) {
@@ -40,11 +41,24 @@ void AbilityButton::Render() {
 void AbilityButton::FixedUpdate() {
 	if (cooldownTimer > 0)
 		cooldownTimer--;
-	if (isPreparing && Engine::GetInput()->GetMouseUp(0)) {
-		auto position = Engine::GetMainCamera()->ConvertScreenToWorld(Engine::GetInput()->GetMousePosition());
-		if (range.lowerBound.x < position.x && range.lowerBound.y < position.y
-			&&range.upperBound.x > position.x && range.upperBound.y > position.y) {
-			Use(position);
+	if (isPreparing) {
+		if (mPlayerIndex == 0) {
+			if (Engine::GetInput()->GetMouseUp(0)) {
+				auto position = Engine::GetMainCamera()->ConvertScreenToWorld(Engine::GetInput()->GetMousePosition());
+				if (range.lowerBound.x < position.x && range.lowerBound.y < position.y
+					&&range.upperBound.x > position.x && range.upperBound.y > position.y) {
+					Use(position);
+				}
+			}
+		}
+		else {
+			if (Engine::GetInput()->GetKeyDown(Space)) {
+				auto position = GameplayUI::playerTwoCursor;
+				if (range.lowerBound.x < position.x && range.lowerBound.y < position.y
+					&&range.upperBound.x > position.x && range.upperBound.y > position.y) {
+					Use(position);
+				}
+			}
 		}
 	}
 }
@@ -125,13 +139,49 @@ void GameplayUI::FixedUpdate(float32 deltaTime) {
 	button21->FixedUpdate();
 	button22->FixedUpdate(); button23->FixedUpdate(); button24->FixedUpdate();
 	
+	PlayerTwoControls();
 }
+
+void GameplayUI::PlayerTwoControls() {
+	if (Engine::GetInput()->GetKeyDown(Num_1)) {
+		button21->OnClicked();
+	}
+	else if (Engine::GetInput()->GetKeyDown(Num_2)) {
+		button22->OnClicked();
+	}else if (Engine::GetInput()->GetKeyDown(Num_3)) {
+		button23->OnClicked();
+	}else if (Engine::GetInput()->GetKeyDown(Num_4)) {
+		button24->OnClicked();
+	}
+
+	if (Engine::GetInput()->GetKeyPressed(Arrow_Up)) {
+		playerTwoCursor += PLAYER2_CURSOR_MOVE_SPEED*b2Vec2(0,1);
+	}
+	if (Engine::GetInput()->GetKeyPressed(Arrow_Down)) {
+		playerTwoCursor += PLAYER2_CURSOR_MOVE_SPEED * b2Vec2( 0, -1);
+	}
+	if (Engine::GetInput()->GetKeyPressed(Arrow_Right)) {
+		playerTwoCursor += PLAYER2_CURSOR_MOVE_SPEED * b2Vec2(1,0);
+	}
+	if (Engine::GetInput()->GetKeyPressed(Arrow_Left)) {
+		playerTwoCursor += PLAYER2_CURSOR_MOVE_SPEED * b2Vec2(-1,0);
+	}
+
+}
+
 
 void GameplayUI::OnGUI() {
 	CreateAbilityButtons();
 	CreateGameInfoUIs();
 }
-
+void GameplayUI::OnRender() {
+	auto center = playerTwoCursor;
+	float length = 0.2f;
+	Engine::GetDebugDraw()->DrawSegment(center + b2Vec2(0, length), center - b2Vec2(0, length),
+		b2Color(0, 0, 1, 1));
+	Engine::GetDebugDraw()->DrawSegment(center + b2Vec2(length,0), center - b2Vec2(length, 0),
+		b2Color(0, 0, 1, 1));
+}
 void GameplayUI::CreateGameInfoUIs() {
 
 

@@ -35,16 +35,22 @@ class GameplayUI : public GameObject {
 public:
 	///----------------callbacks-------------
 	void Construct(SerializedGameObjectData* data) override;
+	void OnRender() override;
 	void OnGUI() override;
 	void OnDestroyed() override;
 	void FixedUpdate(float32 deltaTime) override;
 	///-----------------------------------
+
+	static b2Vec2 playerTwoCursor; 
 private:
 	void CreateAbilityButtons();
 	void CreateGameInfoUIs();
 
+	void PlayerTwoControls();
+
 	const ImVec2 CARD_BUTTON_SIZE = ImVec2(80, 120);
 	const ImVec2 SCORE_TEXT_SIZE = ImVec2(80, 60);
+	const float32 PLAYER2_CURSOR_MOVE_SPEED = 0.3f;
 
 	Camera * mainCamera;
 

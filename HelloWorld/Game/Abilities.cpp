@@ -9,8 +9,14 @@
 ///-------------------Ability Large Ball--------------------------
 b2AABB AbilityLargeBall::GetRange(int playeIndex) {
 	b2AABB aabb;
-	aabb.lowerBound = b2Vec2(-10, -10);
-	aabb.upperBound = b2Vec2(10, 10);
+	if (playeIndex == 0) {
+		aabb.lowerBound = b2Vec2(-20, 0);
+		aabb.upperBound = b2Vec2(5, 25);
+	}
+	else {
+		aabb.lowerBound = b2Vec2(-5, 0);
+		aabb.upperBound = b2Vec2(20, 25);
+	}
 	return aabb;
 }
 PlayerCommand AbilityLargeBall::GenerateCommand(b2Vec2 position, int playeIndex) {
@@ -32,8 +38,8 @@ void AbilityLargeBall::ExecuteCommand(PlayerCommand command) {
 ///-------------------Ability Beam--------------------------
 b2AABB AbilityFloatingBeam::GetRange(int playeIndex) {
 	b2AABB aabb;
-	aabb.lowerBound = b2Vec2(-10, -10);
-	aabb.upperBound = b2Vec2(10, 10);
+	aabb.lowerBound = b2Vec2(-20, -10);
+	aabb.upperBound = b2Vec2(20, 40);
 	return aabb;
 }
 PlayerCommand AbilityFloatingBeam::GenerateCommand(b2Vec2 position, int playeIndex) {
@@ -56,8 +62,8 @@ void AbilityFloatingBeam::ExecuteCommand(PlayerCommand command) {
 ///-------------------Ability Small Cube--------------------------
 b2AABB AbilitySmallCube::GetRange(int playeIndex) {
 	b2AABB aabb;
-	aabb.lowerBound = b2Vec2(-10, -10);
-	aabb.upperBound = b2Vec2(10, 10);
+	aabb.lowerBound = b2Vec2(-30, 20);
+	aabb.upperBound = b2Vec2(30, 40);
 	return aabb;
 }
 PlayerCommand AbilitySmallCube::GenerateCommand(b2Vec2 position, int playeIndex) {
@@ -78,8 +84,8 @@ void AbilitySmallCube::ExecuteCommand(PlayerCommand command) {
 ///-------------------Ability Explosion--------------------------
 b2AABB AbilityExplosion::GetRange(int playeIndex) {
 	b2AABB aabb;
-	aabb.lowerBound = b2Vec2(-20, -10);
-	aabb.upperBound = b2Vec2(20, 30);
+	aabb.lowerBound = b2Vec2(-30, -10);
+	aabb.upperBound = b2Vec2(30, 40);
 	return aabb;
 }
 PlayerCommand AbilityExplosion::GenerateCommand(b2Vec2 position, int playeIndex) {
