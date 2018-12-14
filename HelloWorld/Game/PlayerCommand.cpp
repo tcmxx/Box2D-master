@@ -21,17 +21,17 @@ void PlayerCommandController::EnqueueCommand(PlayerCommand command) {
 }
 
 void PlayerCommandController::ExecuteCommands() {
-	//right now just execeute all commands that has a tick time larger or equal than now
+	//right now just execeute all commands that has a tick time smaller or equal than now
 	//for networking, we might want to remove commands that are too late to be effective and
 	//inform the other clients
 
 	std::list<PlayerCommand>::iterator i = commands.begin();
 	while (i != commands.end())
 	{
-		bool execute = (*i).useTick >= time->tick;
+		bool execute = (*i).useTick <= time->tick;
 		if (!execute)
 		{
-			 i = commands.erase(i);
+			++i;
 		}
 		else
 		{
@@ -39,7 +39,7 @@ void PlayerCommandController::ExecuteCommands() {
 			if (executer != nullptr) {
 				executer->ExecuteCommand((*i));
 			}
-			++i;
+			i = commands.erase(i);
 		}
 	}
 }

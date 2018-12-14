@@ -23,6 +23,7 @@ void Rigidbody2D::RegisterCollider2D(Collider2D* collider) {
 	collider->fixtureDef.shape = &(collider->GetShape());
 	collider->fixture = body->CreateFixture(&(collider->fixtureDef));
 	collider->fixture->SetUserData(collider);
+	collider->body = this;
 }
 
 
@@ -138,6 +139,13 @@ void Rigidbody2D::AddForce(const b2Vec2& force) {
 		body->ApplyForceToCenter(force,true);
 	}
 }
+
+void Rigidbody2D::AddImpulse(const b2Vec2& impulse) {
+	if (body != nullptr) {
+		body->ApplyLinearImpulseToCenter(impulse, true);
+	}
+}
+
 void Rigidbody2D::AddTorque(float32 torque) {
 	if (body != nullptr) {
 		body->ApplyTorque(torque, true);

@@ -26,6 +26,7 @@ public:
 
 	void AddForce(const b2Vec2& force);
 	void AddTorque(float32 torque);
+	void AddImpulse(const b2Vec2& impulse);
 
 	void OnAddedToGameObject() override;
 	void OnEnabled() override;

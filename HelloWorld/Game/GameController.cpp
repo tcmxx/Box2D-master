@@ -32,16 +32,17 @@ void GameController::Construct(SerializedGameObjectData* data) {
 	instance = this;
 	mainCamera = Engine::GetMainCamera();
 	commandController = new PlayerCommandController(GetScene()->GetTime());
-	commandController->AddExecuter(&abilityLargeBall);
-
 }
 void GameController::OnDestroyed() {
 	delete commandController;
 }
 void GameController::FixedUpdate(float32 deltaTime) {
-	if (Engine::GetInput()->GetMouseDown(0)) {
-		//GetScene()->InstantiateGameObject<TargetBall>(mainCamera->ConvertScreenToWorld(Engine::GetInput()->GetMousePosition()), 0);
-		UseLargeBallAbility(mainCamera->ConvertScreenToWorld(Engine::GetInput()->GetMousePosition()));
+
+	if (playerOneMana < MAX_MANA) {
+		playerOneMana += deltaTime * MANA_REGEN_RATE;
+	}
+	if (playerTwoMana < MAX_MANA) {
+		playerTwoMana += deltaTime * MANA_REGEN_RATE;
 	}
 	commandController->ExecuteCommands();
 }
@@ -50,8 +51,10 @@ void GameController::OnGUI() {
 	return;
 
 }
+void GameController::RegisterAbility(Ability* ability) {
+	commandController->AddExecuter(ability);
+}
 
-
-void GameController::UseLargeBallAbility(b2Vec2 position) {
-	commandController->EnqueueCommand(abilityLargeBall.GenerateCommand(position,0));
+void GameController::UseAbility(Ability* ability, b2Vec2 position, int playerIndex) {
+	commandController->EnqueueCommand(ability->GenerateCommand(position, playerIndex));
 }

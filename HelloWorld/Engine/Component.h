@@ -18,7 +18,7 @@ public:
 	virtual void Start() {};
 	virtual void OnEnabled() {};
 	virtual void OnDisabled() {};
-	virtual void FixedUpdate(float fixedDeltaTime) {};
+	virtual void FixedUpdate(float fixedDeltaTime) { (void)(fixedDeltaTime); };
 	virtual void OnDestroyed() {};
 	virtual void OnRender() {};
 

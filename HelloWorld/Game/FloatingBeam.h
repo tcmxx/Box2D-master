@@ -5,32 +5,31 @@
 
 class DebugDraw;
 
-class BigRollingBall : public GameObject {
+class FloatingBeam : public GameObject {
 
-public :
-	const float32 DEFAULT_RADIUS = 3.0f;
+public:
 	const float32 DEFAULT_RESTITUTION = 0.5f;
 	const float32 DEFAULT_DENSITY = 2.0f;
-	const float32 DEFAULT_FRICTION =0.5f;
-	const int LIVE_TICKS = 1200;
-	const int ROTATION_TORQUE = 1000;
+	const float32 DEFAULT_FRICTION = 0.5f;
+	const b2Vec2 DEFAULT_SIZE = b2Vec2(3,0.5f);
+	const float32 DEFAULT_ANGLE = 0.5f;
+	const int LIVE_TICKS = 800;
 
 	void InitializeWithCommand(PlayerCommand command);
 
 	void FixedUpdate(float32 deltaTime) override;
 	void Construct(SerializedGameObjectData* data) override;
 	void OnRender() override;
-	void OnCollisionEnter(CollisionInfo2D collision) override;
-	void OnCollisionExit(CollisionInfo2D collision) override;
 protected:
 
 	void AddPhysics();
 
 	Rigidbody2D* body;
 	int playerIndex;
-	bool hasPhysics = false;
 	DebugDraw* debugDraw;
 	GameTime* time;
 	int tickToEffect;
 	int tickToDestroy;
+
+	bool hasPhysics = false;
 };

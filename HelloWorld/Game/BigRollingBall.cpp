@@ -14,6 +14,7 @@ void BigRollingBall::InitializeWithCommand(PlayerCommand command) {
 	GetTransform()->SetPosition(command.usePosition);
 	tickToEffect = command.effectDelay + command.useTick;
 	tickToDestroy = tickToEffect + LIVE_TICKS;
+	playerIndex = command.playerIndex;
 }
 
 

@@ -72,9 +72,9 @@ public:
 	inline Scene* GetScene();
 
 	//virtual functions to call for inherited classes
-	virtual void Construct(SerializedGameObjectData* data) {};
+	virtual void Construct(SerializedGameObjectData* data) { B2_NOT_USED(data); };
 	virtual void Start() {};
-	virtual void FixedUpdate(float32 deltaTime) {};
+	virtual void FixedUpdate(float32 deltaTime) { B2_NOT_USED(deltaTime); };
 	virtual void OnRender() {};
 	virtual void OnGUI() {};
 	virtual void OnDestroyed() {};

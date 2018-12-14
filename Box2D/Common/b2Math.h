@@ -332,7 +332,7 @@ struct b2Rot
 struct b2Transform
 {
 	/// The default constructor does nothing.
-	b2Transform() {}
+	b2Transform() { SetIdentity(); }
 
 	/// Initialize using a position vector and a rotation.
 	b2Transform(const b2Vec2& position, const b2Rot& rotation) : p(position), q(rotation) {}

@@ -2,6 +2,7 @@
 
 #include "Box2D\Box2D.h"
 #include "Collider2D.h"
+#include <vector>
 
 //for now the settings are defined here
 struct Physics2DSetting {
@@ -15,12 +16,16 @@ struct CollisionInfo2D {
 	Collider2D* other;
 };
 
-class Physics2D : public b2ContactListener {
+class Physics2D : public b2ContactListener,public b2QueryCallback {
 public:
 	Physics2D();
 	void Step();
 	b2World * GetWorld2D();
 	void SetGravity(b2Vec2 gravity);
+	
+	///for now just return the overlayed colliders without other information
+	std::vector<Collider2D*> SphereOverlay(b2Vec2 position, float32 radiu);
+
 private:
 	friend class Scene;
 
@@ -30,6 +35,9 @@ private:
 	Physics2DSetting physics2DSetting;
 	void BeginContact(b2Contact* contact) override;
 	void EndContact(b2Contact* contact) override;
+	bool ReportFixture(b2Fixture* fixture) override;
+
+	std::vector<b2Fixture*> tempFixturesHolder;
 
 	// physics a world object, which will hold and simulate the rigid bodies.
 	b2World world2D;
