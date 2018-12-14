@@ -133,17 +133,35 @@ void Rigidbody2D::SetAngularDamping(float32 d) {
 }
 
 
-
-
-
-
-
-void Rigidbody2D::OnSetActive(bool active) {
+void Rigidbody2D::AddForce(const b2Vec2& force) {
 	if (body != nullptr) {
-		body->SetActive(active);
+		body->ApplyForceToCenter(force,true);
+	}
+}
+void Rigidbody2D::AddTorque(float32 torque) {
+	if (body != nullptr) {
+		body->ApplyTorque(torque, true);
+	}
+}
+
+
+
+
+void Rigidbody2D::OnEnabled() {
+	if (body != nullptr) {
+		body->SetActive(true);
 	}
 	else {
-		bodyDef.active = active;
+		bodyDef.active = true;
+	}
+}
+void Rigidbody2D::OnDisabled() {
+	if (body != nullptr) {
+		//body->SetActive(false);//temperate not doing this now.
+		//TODO:need to make on collision callbacks happen out side of physics simulation
+	}
+	else {
+		bodyDef.active = false;
 	}
 }
 void Rigidbody2D::Start() {

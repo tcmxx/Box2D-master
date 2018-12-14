@@ -12,11 +12,12 @@ public:
 	~Component();
 
 	GameObject* GetGameObject() const;
-
+	void SetSelfEnabled(bool enabled);
 
 	virtual void OnAddedToGameObject() = 0;
 	virtual void Start() {};
-	virtual void OnSetActive(bool active) {};	//for now only use this one instead of onenble and ondisable
+	virtual void OnEnabled() {};
+	virtual void OnDisabled() {};
 	virtual void FixedUpdate(float fixedDeltaTime) {};
 	virtual void OnDestroyed() {};
 	virtual void OnRender() {};
@@ -24,8 +25,8 @@ public:
 protected:
 	friend class GameObject;
 	GameObject * gameObject;
-
-
+private:
+	bool selfEnabled = true;
 };
 
 

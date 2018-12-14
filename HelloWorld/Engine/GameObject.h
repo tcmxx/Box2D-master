@@ -60,10 +60,15 @@ public:
 		componentVector.push_back(newComponent);
 		newComponent->gameObject = this;
 		newComponent->OnAddedToGameObject();
+		if (active && started)
+			newComponent->Start();
+		if (newComponent->selfEnabled)
+			newComponent->OnEnabled();
 		return newComponent;
 	};
 
 	void SetActive(bool active);
+	bool IsActive();
 	inline Scene* GetScene();
 
 	//virtual functions to call for inherited classes
@@ -117,3 +122,7 @@ inline const Transform* GameObject::GetTransform() const {
 inline Scene* GameObject::GetScene() {
 	return scene;
 };
+
+inline bool GameObject::IsActive() {
+	return active;
+}

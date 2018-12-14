@@ -17,7 +17,7 @@ void TargetBall::Construct(SerializedGameObjectData* data) {
 	Rigidbody2D* body = AddComponent<Rigidbody2D>();
 	body->SetType(b2_dynamicBody);
 	body->SetAngularDamping(0.1f);
-	body->SetLinearDamping(0.5f);
+	body->SetLinearDamping(0.3f);
 	debugDraw = Engine::GetDebugDraw();
 }
 

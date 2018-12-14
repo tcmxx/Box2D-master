@@ -10,7 +10,7 @@ class StaticWallData :public SerializedGameObjectData{
 public:
 	b2Vec2 size = b2Vec2(1,1);
 	float32 restitution = 0.5f;
-	float32 friction = 1.0f;
+	float32 friction = 0.6f;
 };
 
 class StaticWall : public GameObject {

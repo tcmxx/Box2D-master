@@ -12,6 +12,8 @@ GameObject::~GameObject()
 {
 	
 	for (std::vector<Component*>::size_type i = 0; i != componentVector.size(); i++) {
+		if (active && componentVector[i]->selfEnabled)
+			componentVector[i]->OnDisabled();
 		componentVector[i]->OnDestroyed();
 		delete componentVector[i];
 	}
@@ -19,6 +21,20 @@ GameObject::~GameObject()
 }
 
 void GameObject::SetActive(bool active) {
+	if (started) {
+		if (this->active && !active) {
+			for (std::vector<Component*>::size_type i = 0; i != componentVector.size(); i++) {
+				if (componentVector[i]->selfEnabled)
+					componentVector[i]->OnDisabled();
+			}
+		}
+		else if (!this->active && active) {
+			for (std::vector<Component*>::size_type i = 0; i != componentVector.size(); i++) {
+				if (componentVector[i]->selfEnabled)
+					componentVector[i]->OnEnabled();
+			}
+		}
+	}
 	this->active = active;
 }
 
@@ -28,7 +44,9 @@ void GameObject::InnerFixedUpdate(float32 deltaTime) {
 		started = true;
 		//loop through all the components
 		for (std::vector<Component*>::size_type i = 0; i != componentVector.size(); i++) {
-			componentVector[i]->Start();
+				componentVector[i]->Start();
+				if (componentVector[i]->selfEnabled)
+					componentVector[i]->OnEnabled();
 		}
 		Start();
 	}
@@ -36,7 +54,8 @@ void GameObject::InnerFixedUpdate(float32 deltaTime) {
 	if (active) {
 		//loop through all the components
 		for (std::vector<Component*>::size_type i = 0; i != componentVector.size(); i++) {
-			componentVector[i]->FixedUpdate(deltaTime);
+			if (componentVector[i]->selfEnabled)
+				componentVector[i]->FixedUpdate(deltaTime);
 		}
 		FixedUpdate(deltaTime);
 	}
@@ -46,7 +65,8 @@ void GameObject::InnerFixedUpdate(float32 deltaTime) {
 void GameObject::Render() {
 	if (active) {
 		for (std::vector<Component*>::size_type i = 0; i != componentVector.size(); i++) {
-			componentVector[i]->OnRender();
+			if (componentVector[i]->selfEnabled)
+				componentVector[i]->OnRender();
 		}
 		OnRender();
 	}

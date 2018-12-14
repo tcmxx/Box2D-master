@@ -24,9 +24,12 @@ public:
 	const float32 GetAngularDamping() const;
 	void SetAngularDamping(float32 d);
 
+	void AddForce(const b2Vec2& force);
+	void AddTorque(float32 torque);
 
 	void OnAddedToGameObject() override;
-	void OnSetActive(bool active) override;
+	void OnEnabled() override;
+	void OnDisabled() override;
 	void Start() override;
 	void FixedUpdate(float fixedDeltaTime) override;
 	void OnDestroyed() override;

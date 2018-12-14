@@ -24,7 +24,7 @@ public:
 	void FixedUpdate();
 
 	Physics2D* GetPhysics2D();
-
+	GameTime* GetTime();
 
 	//-------------------------------------------------------------
 	//---------------Instantiation functions----------------------
@@ -88,4 +88,8 @@ private:
 
 inline Physics2D* Scene::GetPhysics2D() {
 	return &physics2D;
+}
+
+inline GameTime* Scene::GetTime() {
+	return &gameTime;
 }
