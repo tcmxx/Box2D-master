@@ -1,2 +1,3 @@
-Build/
-imgui.ini
+/Build/.vs/
+/Build/obj/
+/Build/bin/

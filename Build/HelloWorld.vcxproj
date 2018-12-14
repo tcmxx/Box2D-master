@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4179687C-2D31-AAC9-9638-8325820F45BA}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>HelloWorld</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\x86\Debug\</OutDir>
+    <IntDir>obj\x86\Debug\HelloWorld\</IntDir>
+    <TargetName>HelloWorld</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\x86_64\Debug\</OutDir>
+    <IntDir>obj\x86_64\Debug\HelloWorld\</IntDir>
+    <TargetName>HelloWorld</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\x86\Release\</OutDir>
+    <IntDir>obj\x86\Release\HelloWorld\</IntDir>
+    <TargetName>HelloWorld</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\x86_64\Release\</OutDir>
+    <IntDir>obj\x86_64\Release\HelloWorld\</IntDir>
+    <TargetName>HelloWorld</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\HelloWorld\DebugDraw.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\BoxCollider2D.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\CircleCollider2D.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Collider2D.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Component.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Engine.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\GameObject.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\InputManager.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Physics2D.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Rigidbody2D.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Scene.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Transform.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\Abilities.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\Basket.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\BigRollingBall.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\Explosion.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\FloatingBeam.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\GameController.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\GameplayUI.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\PlayerCommand.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\SmallCube.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\StaticWall.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\TargetBall.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\TargetSpawner.cpp" />
+    <ClCompile Include="..\HelloWorld\glad\glad.c" />
+    <ClCompile Include="..\HelloWorld\glfw\context.c" />
+    <ClCompile Include="..\HelloWorld\glfw\egl_context.c" />
+    <ClCompile Include="..\HelloWorld\glfw\init.c" />
+    <ClCompile Include="..\HelloWorld\glfw\input.c" />
+    <ClCompile Include="..\HelloWorld\glfw\monitor.c" />
+    <ClCompile Include="..\HelloWorld\glfw\vulkan.c" />
+    <ClCompile Include="..\HelloWorld\glfw\wgl_context.c" />
+    <ClCompile Include="..\HelloWorld\glfw\win32_init.c" />
+    <ClCompile Include="..\HelloWorld\glfw\win32_joystick.c" />
+    <ClCompile Include="..\HelloWorld\glfw\win32_monitor.c" />
+    <ClCompile Include="..\HelloWorld\glfw\win32_time.c" />
+    <ClCompile Include="..\HelloWorld\glfw\win32_tls.c" />
+    <ClCompile Include="..\HelloWorld\glfw\win32_window.c" />
+    <ClCompile Include="..\HelloWorld\glfw\window.c" />
+    <ClCompile Include="..\HelloWorld\HelloWorld.cpp" />
+    <ClCompile Include="..\HelloWorld\imgui\imgui.cpp" />
+    <ClCompile Include="..\HelloWorld\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\HelloWorld\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\HelloWorld\imgui\imgui_impl_glfw_gl3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Box2D.vcxproj">
+      <Project>{A434E80C-1049-10BE-D9CA-B31D459E0CEF}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\HelloWorld\DebugDraw.h" />
+    <ClInclude Include="..\HelloWorld\Engine\BoxCollider2D.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Camera.h" />
+    <ClInclude Include="..\HelloWorld\Engine\CircleCollider2D.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Collider2D.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Component.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Engine.h" />
+    <ClInclude Include="..\HelloWorld\Engine\GameObject.h" />
+    <ClInclude Include="..\HelloWorld\Engine\InputManager.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Physics2D.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Rigidbody2D.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Scene.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Time.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Transform.h" />
+    <ClInclude Include="..\HelloWorld\Game\Abilities.h" />
+    <ClInclude Include="..\HelloWorld\Game\Basket.h" />
+    <ClInclude Include="..\HelloWorld\Game\BigRollingBall.h" />
+    <ClInclude Include="..\HelloWorld\Game\Explosion.h" />
+    <ClInclude Include="..\HelloWorld\Game\FloatingBeam.h" />
+    <ClInclude Include="..\HelloWorld\Game\GameController.h" />
+    <ClInclude Include="..\HelloWorld\Game\GameplayUI.h" />
+    <ClInclude Include="..\HelloWorld\Game\PlayerCommand.h" />
+    <ClInclude Include="..\HelloWorld\Game\SmallCube.h" />
+    <ClInclude Include="..\HelloWorld\Game\StaticWall.h" />
+    <ClInclude Include="..\HelloWorld\Game\TargetBall.h" />
+    <ClInclude Include="..\HelloWorld\Game\TargetSpawner.h" />
+    <ClInclude Include="..\HelloWorld\glad\glad.h" />
+    <ClInclude Include="..\HelloWorld\glad\khrplatform.h" />
+    <ClInclude Include="..\HelloWorld\glfw\egl_context.h" />
+    <ClInclude Include="..\HelloWorld\glfw\glfw3.h" />
+    <ClInclude Include="..\HelloWorld\glfw\glfw3native.h" />
+    <ClInclude Include="..\HelloWorld\glfw\glfw_config.h" />
+    <ClInclude Include="..\HelloWorld\glfw\internal.h" />
+    <ClInclude Include="..\HelloWorld\glfw\wgl_context.h" />
+    <ClInclude Include="..\HelloWorld\glfw\win32_joystick.h" />
+    <ClInclude Include="..\HelloWorld\glfw\win32_platform.h" />
+    <ClInclude Include="..\HelloWorld\imgui\imconfig.h" />
+    <ClInclude Include="..\HelloWorld\imgui\imgui.h" />
+    <ClInclude Include="..\HelloWorld\imgui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="..\HelloWorld\imgui\imgui_internal.h" />
+    <ClInclude Include="..\HelloWorld\imgui\stb_rect_pack.h" />
+    <ClInclude Include="..\HelloWorld\imgui\stb_textedit.h" />
+    <ClInclude Include="..\HelloWorld\imgui\stb_truetype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\HelloWorld\imgui\imgui.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\HelloWorld\Data\DroidSans.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

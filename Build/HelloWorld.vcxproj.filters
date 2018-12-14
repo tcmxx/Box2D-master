@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\HelloWorld\HelloWorld.cpp" />
+    <ClCompile Include="..\HelloWorld\Engine\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\Component.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\GameObject.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\Transform.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\Scene.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\Rigidbody2D.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\Collider2D.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\CircleCollider2D.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\BoxCollider2D.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glad\glad.c">
+      <Filter>glad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\context.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\egl_context.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\init.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\input.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\monitor.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\vulkan.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\wgl_context.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\win32_init.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\win32_joystick.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\win32_monitor.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\win32_time.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\win32_tls.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\win32_window.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\glfw\window.c">
+      <Filter>glfw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\imgui\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\DebugDraw.cpp" />
+    <ClCompile Include="..\HelloWorld\Game\TargetBall.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\InputManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\GameController.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Engine\Physics2D.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\StaticWall.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\TargetSpawner.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\Basket.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\GameplayUI.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\Abilities.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\PlayerCommand.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\BigRollingBall.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\FloatingBeam.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\SmallCube.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HelloWorld\Game\Explosion.cpp">
+      <Filter>Game\Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{a1f98425-1568-4df4-bb7d-683c4522a32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{dee6db8b-147f-40ab-b9d4-dbbeb636c8b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{e9c02754-4392-447b-b417-ee5545ad8873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="glad">
+      <UniqueIdentifier>{d0b68646-8ca1-4d58-b4b7-2c982b7d7d14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="glfw">
+      <UniqueIdentifier>{2f4c5cd0-2431-4ba7-8914-b180d2a4a283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{59ee6eec-1b53-4b2e-9a53-91c8bcef8722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{a3467d19-e756-4996-9c15-cc81ca02c3ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Objects">
+      <UniqueIdentifier>{ca79ece8-380a-454a-a2aa-7e7e983abd60}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\HelloWorld\Engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Component.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\GameObject.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Transform.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Scene.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Time.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Rigidbody2D.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Collider2D.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\CircleCollider2D.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\BoxCollider2D.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glad\glad.h">
+      <Filter>glad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glad\khrplatform.h">
+      <Filter>glad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\egl_context.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\glfw_config.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\glfw3.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\glfw3native.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\internal.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\wgl_context.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\win32_joystick.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\glfw\win32_platform.h">
+      <Filter>glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\imgui_impl_glfw_gl3.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\stb_rect_pack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\stb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\imgui\stb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\DebugDraw.h" />
+    <ClInclude Include="..\HelloWorld\Engine\Camera.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\TargetBall.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\InputManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\GameController.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Engine\Physics2D.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\StaticWall.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\TargetSpawner.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\Basket.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\GameplayUI.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\Abilities.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\PlayerCommand.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\BigRollingBall.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\FloatingBeam.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\SmallCube.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HelloWorld\Game\Explosion.h">
+      <Filter>Game\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\HelloWorld\imgui\imgui.ini">
+      <Filter>imgui</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\HelloWorld\Data\DroidSans.ttf">
+      <Filter>Data</Filter>
+    </Font>
+  </ItemGroup>
+</Project>
