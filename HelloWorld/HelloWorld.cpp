@@ -44,10 +44,10 @@ void CreateObjects(Scene* scene) {
 	scene->InstantiateGameObject<StaticWall>(b2Vec2(45, 0), 0, "Ground", &wallDataground);
 	StaticWallData wallDataleft;
 	wallDataleft.size = b2Vec2(1, 10);
-	scene->InstantiateGameObject<StaticWall>(b2Vec2(-30,10),0,"WallLeft", &wallDataleft);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(-28,10),0,"WallLeft", &wallDataleft);
 	StaticWallData wallDataRight;
 	wallDataRight.size = b2Vec2(1, 10);
-	scene->InstantiateGameObject<StaticWall>(b2Vec2(30, 10), 0, "WallRight", &wallDataRight);
+	scene->InstantiateGameObject<StaticWall>(b2Vec2(28, 10), 0, "WallRight", &wallDataRight);
 
 	//the baskets
 	BasketData playerOneBasketData;

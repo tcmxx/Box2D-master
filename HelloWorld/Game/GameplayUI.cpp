@@ -27,7 +27,8 @@ void AbilityButton::Render() {
 	//showText = std::to_string(cooldownTimer);
 
 	if (ImGui::Button(showText.c_str(), mSize)) {
-		OnClicked();
+		if(mPlayerIndex == 0)
+			OnClicked();
 	}
 
 	if (isPreparing) {
@@ -195,9 +196,11 @@ void GameplayUI::CreateGameInfoUIs() {
 	ImGui::PushItemWidth(-1.0f);
 
 	//ImGui::SetCursorPos(b2Vec2(float(mainCamera->m_width / 2 - menuWidth / 2)+20, float((SCORE_TEXT_SIZE.y + 20)/2+10)));
-	ImGui::Text(("Player 1:" + std::to_string(GameController::GetInstance()->GetPlayerPoint(0))).c_str());
-	ImGui::SameLine(menuWidth - SCORE_TEXT_SIZE.x);
-	ImGui::Text(("Player 2:" + std::to_string(GameController::GetInstance()->GetPlayerPoint(1))).c_str());
+	ImGui::Text((std::to_string(GameController::GetInstance()->GetPlayerPoint(0))).c_str());
+	ImGui::SameLine((menuWidth - SCORE_TEXT_SIZE.x)/2);
+	ImGui::Text("Goals");
+	ImGui::SameLine(menuWidth - SCORE_TEXT_SIZE.x/2);
+	ImGui::Text((std::to_string(GameController::GetInstance()->GetPlayerPoint(1))).c_str());
 
 	ImGui::PopAllowKeyboardFocus();
 	ImGui::End();

@@ -49,8 +49,8 @@ private:
 	void PlayerTwoControls();
 
 	const ImVec2 CARD_BUTTON_SIZE = ImVec2(80, 120);
-	const ImVec2 SCORE_TEXT_SIZE = ImVec2(80, 60);
-	const float32 PLAYER2_CURSOR_MOVE_SPEED = 0.3f;
+	const ImVec2 SCORE_TEXT_SIZE = ImVec2(30, 60);
+	const float32 PLAYER2_CURSOR_MOVE_SPEED = 0.4f;
 
 	Camera * mainCamera;
 
